@@ -1,6 +1,7 @@
 # Parkparty App
 
 Eine App, welche die Bestellung von Snacks, Getränken und Gegenständen an genaue GPS-Standorte ermöglicht.
+Umgesetzt in Flutter
 
 ## Funktionsübersicht
 
