@@ -8,6 +8,7 @@ import 'package:stacked_services/stacked_services.dart';
 import 'checkout_service.dart';
 import 'error_service.dart';
 import 'warenkorb_service.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class PaymentService {
   final NavigationService _navigationService = locator<NavigationService>();
@@ -19,7 +20,7 @@ class PaymentService {
 
   void executeGeneralPayment(double amount) async {
     var request = BraintreeDropInRequest(
-      tokenizationKey: 'sandbox_bnmkdd5s_rg4z7kwtv5cxqsg9',
+      tokenizationKey: dotenv.env["PAYPAL_KEy"],
       collectDeviceData: true,
       cardEnabled: true,
       googlePaymentRequest: BraintreeGooglePaymentRequest(
@@ -27,10 +28,7 @@ class PaymentService {
         currencyCode: 'EUR',
         billingAddressRequired: false,
       ),
-      paypalRequest: BraintreePayPalRequest(
-          amount: amount.toString(),
-          currencyCode: 'EUR',
-          displayName: "Chilled"),
+      paypalRequest: BraintreePayPalRequest(amount: amount.toString(), currencyCode: 'EUR', displayName: "Chilled"),
     );
     BraintreeDropInResult? result = await BraintreeDropIn.start(request);
     if (result != null) {
@@ -42,13 +40,11 @@ class PaymentService {
 
   Future<bool> executePayPalPayment(double amount) async {
     final _request = BraintreePayPalRequest(
-      billingAgreementDescription:
-          "Ich stimme zu, dass meine Zahlungsdaten zur Validation übermittelt werden",
+      billingAgreementDescription: "Ich stimme zu, dass meine Zahlungsdaten zur Validation übermittelt werden",
       amount: NumberFormat.currency(locale: 'eu', symbol: '').format(amount),
     );
 
-    BraintreePaymentMethodNonce? _result = await Braintree.requestPaypalNonce(
-        'sandbox_bnmkdd5s_rg4z7kwtv5cxqsg9', _request);
+    BraintreePaymentMethodNonce? _result = await Braintree.requestPaypalNonce('sandbox_bnmkdd5s_rg4z7kwtv5cxqsg9', _request);
     if (_result != null) {
       print(_result.description);
       print(_result.nonce);
@@ -57,11 +53,9 @@ class PaymentService {
     return false;
   }
 
-  Future<void> executePayment(String zahlMethode, String? name, String? mail,
-      String? phone, String? lieferHinweis, bool needsToCheck) async {
+  Future<void> executePayment(String zahlMethode, String? name, String? mail, String? phone, String? lieferHinweis, bool needsToCheck) async {
     if (needsToCheck) {
-      _checkoutService.saveData(
-          name ?? "Fail", mail ?? "Fail", phone ?? "Fail", lieferHinweis);
+      _checkoutService.saveData(name ?? "Fail", mail ?? "Fail", phone ?? "Fail", lieferHinweis);
       if (await checkVerfuegbarkeit(zahlMethode)) {
         return;
       }
@@ -76,8 +70,7 @@ class PaymentService {
         }
         break;
       default:
-        final bool successful =
-            await executePayPalPayment(_warenkorbService.warenkorbPreis);
+        final bool successful = await executePayPalPayment(_warenkorbService.warenkorbPreis);
         if (!successful) {
           return;
         }
@@ -103,8 +96,7 @@ class PaymentService {
     } catch (e) {
       _dialogService.showDialog(
         title: "Verbindungsproblem",
-        description:
-            "Die Verbindung zur Datenbank konnte nicht aufgebaut werden. Bitte versuche es erneut",
+        description: "Die Verbindung zur Datenbank konnte nicht aufgebaut werden. Bitte versuche es erneut",
         buttonTitle: "OK",
       );
       return false;
