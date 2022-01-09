@@ -13,6 +13,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  
+
   #UI
   cupertino_icons: ^1.0.2
   google_fonts: ^2.1.0
@@ -98,6 +100,7 @@ flutter:
   
   assets:
     - assets/
+    - .env
 
 
 flutter_native_splash:

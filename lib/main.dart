@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:parkparty/app/app.locator.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 // ignore: unused_import
 import 'package:parkparty/services/localstorage_service.dart';
 // ignore: unused_import
@@ -23,6 +24,7 @@ late FirebaseAnalytics analytics;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setupLocator();
+  await DotEnv.dotenv.load(fileName: ".env");
   setupBottomSheetUi();
   //Firebase Kram
   await Firebase.initializeApp();
@@ -65,25 +67,15 @@ class MyApp extends StatelessWidget {
               borderRadius: BorderRadius.circular(2),
               borderSide: BorderSide(color: Colors.transparent),
             ),
-            focusedBorder: UnderlineInputBorder(
-                borderRadius: BorderRadius.circular(2),
-                borderSide: BorderSide(color: Colors.transparent)),
-            focusedErrorBorder: UnderlineInputBorder(
-                borderRadius: BorderRadius.circular(2),
-                borderSide: BorderSide(color: Colors.transparent)),
-            errorBorder: UnderlineInputBorder(
-                borderRadius: BorderRadius.circular(2),
-                borderSide: BorderSide(color: Colors.transparent)),
-            contentPadding:
-                EdgeInsets.only(left: 11, right: 3, top: 2, bottom: 2),
+            focusedBorder: UnderlineInputBorder(borderRadius: BorderRadius.circular(2), borderSide: BorderSide(color: Colors.transparent)),
+            focusedErrorBorder: UnderlineInputBorder(borderRadius: BorderRadius.circular(2), borderSide: BorderSide(color: Colors.transparent)),
+            errorBorder: UnderlineInputBorder(borderRadius: BorderRadius.circular(2), borderSide: BorderSide(color: Colors.transparent)),
+            contentPadding: EdgeInsets.only(left: 11, right: 3, top: 2, bottom: 2),
             border: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.grey[800]!),
             ),
             labelStyle: GoogleFonts.roboto(
-              textStyle: TextStyle(
-                  color: Colors.grey[800],
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400),
+              textStyle: TextStyle(color: Colors.grey[800], fontSize: 16, fontWeight: FontWeight.w400),
             ),
           ),
           textTheme: TextTheme(
