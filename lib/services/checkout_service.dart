@@ -21,8 +21,7 @@ class CheckoutService {
   final DialogService _dialogService = locator<DialogService>();
   final LocationService _locationService = locator<LocationService>();
   final NavigationService _navigationService = locator<NavigationService>();
-  final SharedPreferencesService _sharedPrefService =
-      locator<SharedPreferencesService>();
+  final SharedPreferencesService _sharedPrefService = locator<SharedPreferencesService>();
 
   late String? deviceID;
   bool blocked = false;
@@ -45,8 +44,7 @@ class CheckoutService {
       // import 'dart:io'
       var iosDeviceInfo = await deviceInfo.iosInfo;
       deviceID = iosDeviceInfo.identifierForVendor;
-      bestellung =
-          bestellung.copyWith(deviceID: iosDeviceInfo.identifierForVendor);
+      bestellung = bestellung.copyWith(deviceID: iosDeviceInfo.identifierForVendor);
       return iosDeviceInfo.identifierForVendor; // unique ID on iOS
     } else {
       var androidDeviceInfo = await deviceInfo.androidInfo;
@@ -77,6 +75,7 @@ class CheckoutService {
     _lieferHinweis = lieferHinweis;
   }
 
+  //Schließt Bestellung ab
   Future<void> completeBestellung(String bezahlMethode) async {
     LatLng latlng = _locationService.lastLocation["location"];
     bestellung = bestellung.copyWith(
@@ -85,10 +84,8 @@ class CheckoutService {
       bezahlMethode: bezahlMethode,
       gesamtPreis: _warenkorbService.warenkorbPreis,
       bestellInhalt: _warenkorbService.warenkorb.map((wE) {
-        final AuswahlElement _auswahl =
-            wE.endAuswahl ?? AuswahlElement(title: "keineAuswahl");
-        final MengenAuswahl _menge =
-            wE.mengenWahl ?? MengenAuswahl(title: "keineAuswahl");
+        final AuswahlElement _auswahl = wE.endAuswahl ?? AuswahlElement(title: "keineAuswahl");
+        final MengenAuswahl _menge = wE.mengenWahl ?? MengenAuswahl(title: "keineAuswahl");
         return BestellElement(
                 mengenAuswahl: _menge.title,
                 title: wE.name,
@@ -103,14 +100,11 @@ class CheckoutService {
       phone: _phone,
       lieferHinweis: _lieferHinweis,
       ab18: _warenkorbService.alkoholhaltig,
-      
     );
     try {
-      final bestellungDocument =
-          FirebaseFirestore.instance.collection('bestellungen').doc();
+      final bestellungDocument = FirebaseFirestore.instance.collection('bestellungen').doc();
       final Map<String, dynamic> bestellDetails = bestellung.toJson();
-      bestellDetails["lastLocation"] =
-          GeoPoint(latlng.latitude, latlng.longitude);
+      bestellDetails["lastLocation"] = GeoPoint(latlng.latitude, latlng.longitude);
       print(bestellDetails);
       await bestellungDocument.set(bestellDetails);
       activeDeliveryDocument = bestellungDocument.id;
@@ -119,8 +113,7 @@ class CheckoutService {
     } catch (error) {
       _dialogService.showDialog(
         title: "Verbindungsproblem",
-        description:
-            "Die Verbindung zur Datenbank konnte nicht aufgebaut werden. Bitte versuche es erneut",
+        description: "Die Verbindung zur Datenbank konnte nicht aufgebaut werden. Bitte versuche es erneut",
         buttonTitle: "OK",
       );
       throw FirestoreApiException(
