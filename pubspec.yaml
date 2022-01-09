@@ -1,0 +1,105 @@
+name: parkparty
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  #UI
+  cupertino_icons: ^1.0.2
+  google_fonts: ^2.1.0
+  dots_indicator: ^2.0.0
+  google_nav_bar: ^5.0.5
+  animations: ^2.0.0
+  odometer: ^2.0.0
+  badges: ^2.0.1
+  sliver_tools: ^0.2.5
+  shimmer: ^2.0.0
+  cached_network_image: ^3.0.0
+  material_floating_search_bar: ^0.3.4
+  implicitly_animated_reorderable_list: ^0.4.0
+  sliding_up_panel: ^2.0.0+1
+
+  #Für Paypal
+  flutter_braintree: ^2.0.0-nullsafety.0
+
+  #Zum Anschauen
+  lottie: ^1.0.1
+  loader_overlay: ^2.0.2
+
+  #Für restliche Zahlungsanbieter:
+  # flutter_stripe: ^1.0.2
+  # pay: ^1.0.5
+
+  #Firebase
+  firebase_core: ^1.0.2
+  cloud_firestore: ^2.2.2
+  firebase_analytics: ^8.1.2
+  firebase_crashlytics: ^2.0.6
+  firebase_performance: ^0.7.0+5
+
+  #Stacked State Management
+  stacked: ^2.1.1
+  stacked_services: ^0.8.5
+
+  #data models
+  shared_preferences: ^2.0.5
+  freezed_annotation: ^0.14.1
+  json_annotation: ^4.0.1
+  flutter_dotenv: ^5.0.0
+
+  #utils
+  auto_route: ^2.1.1
+  logger: ^1.0.0
+  measured_size: ^1.0.0
+  intl: ^0.17.0
+  google_maps_flutter: ^2.0.6
+  flutter_svg: ^0.22.0
+  flutter_multi_formatter: ^2.2.0
+  form_field_validator: ^1.1.0
+  http: ^0.13.3
+  geolocator: ^7.2.0+1
+  device_info: ^2.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  build_runner:
+  stacked_generator: ^0.4.1
+  auto_route_generator: ^2.1.0
+
+  #UI
+  flutter_native_splash: ^1.2.0
+
+  #data models
+  freezed: ^0.14.1+2
+  json_serializable: ^4.1.0
+
+  #Testing
+  mockito:
+
+# The following section is specific to Flutter.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  
+  assets:
+    - assets/
+
+
+flutter_native_splash:
+  color: "#252735"
+  image: "assets/alt_splash.png"

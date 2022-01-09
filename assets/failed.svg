@@ -1,0 +1,9 @@
+<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" class="feather feather-check-square" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#000000" fill="none">
+
+ <g>
+  <title>Layer 1</title>
+  <path id="svg_2" d="m21,12l0,7a2,2 0 0 1 -2,2l-14,0a2,2 0 0 1 -2,-2l0,-14a2,2 0 0 1 2,-2l11,0"/>
+  <line fill="none" id="svg_3" y2="13.24775" x2="11.00897" y1="6.87682" x1="17.42709"/>
+  <line transform="rotate(-90 14.218 10.0623)" fill="none" id="svg_5" y2="13.24775" x2="11.00897" y1="6.87682" x1="17.42709"/>
+ </g>
+</svg>

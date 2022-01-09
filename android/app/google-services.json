@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "740294131875",
+    "project_id": "parkparty",
+    "storage_bucket": "parkparty.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:740294131875:android:3d8a6bc097abf45e49bf16",
+        "android_client_info": {
+          "package_name": "com.felixjaehn.parkparty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "740294131875-ljo0e0mv8fjc0g6t1dkbo0jgsco4tfhr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.felixjaehn.parkparty",
+            "certificate_hash": "113930e251770b06a133e1a268270d3c779d11a9"
+          }
+        },
+        {
+          "client_id": "740294131875-b175ofmhosbp7320e0ce53n7fv5l2pq9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgukFj5eBR1qAzADOeqgWp80cmKChucEg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "740294131875-b175ofmhosbp7320e0ce53n7fv5l2pq9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
